@@ -31,7 +31,7 @@ image = face_recognition.load_image_file("imagen_original.jpeg")
 # Obtiene las coordenadas que delimitan cada cara en el frame capturado
 # Obtiene los encodings para cada cara delimitada
 print("Obteniendo coordenadas de la cara...")
-boxes = face_recognition.face_locations(image, model="hog")
+boxes = face_recognition.face_locations(image)
 print("Obteniendo encondigns de la cara...")
 encodings = face_recognition.face_encodings(image, boxes)
 print("Terminado!")

@@ -27,7 +27,7 @@ for (i, image_Path) in enumerate(image_Paths):
 
     # Obtiene las coordenadas que delimitan cada cara en la imagen
     # Se especifica que se usa una CNN
-    boxes = face_recognition.face_locations(image, model="cnn")
+    boxes = face_recognition.face_locations(image)
 
     print("Caras detectadas: " + str(len(boxes)))
 
