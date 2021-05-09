@@ -22,6 +22,7 @@ name_counter = Counter(data['names'])
 
 cap = cv2.VideoCapture()
 cap.open("rtsp://admin:AmgCam18*@192.168.1.51:554/Streaming/Channels/1")
+print("Tomando captura de la camara")
 _, frame = cap.read()
 cv2.imwrite("imagen_original.jpeg",frame)
 
