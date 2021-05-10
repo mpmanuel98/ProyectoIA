@@ -1,3 +1,4 @@
+# Importacion de modulos Python
 from imutils import paths
 import face_recognition
 import pickle
@@ -26,7 +27,6 @@ for (i, image_Path) in enumerate(image_Paths):
     image = face_recognition.load_image_file(image_Path)
 
     # Obtiene las coordenadas que delimitan cada cara en la imagen
-    # Se especifica que se usa una CNN
     boxes = face_recognition.face_locations(image)
 
     print("Caras detectadas: " + str(len(boxes)))
@@ -39,7 +39,7 @@ for (i, image_Path) in enumerate(image_Paths):
         known_Encodings.append(encoding)
         known_Names.append(name)
 
-# Guarda en disco los encodings con sus correspondientes nombres
+# Guarda en disco los encodings serializados con sus correspondientes nombres
 print("Serializando encodings...")
 data = {"encodings": known_Encodings, "names": known_Names}
 f = open(encodings_path, "wb")

@@ -1,3 +1,4 @@
+# Importacion de modulos Python
 import face_recognition
 import pickle
 import cv2
@@ -17,9 +18,11 @@ encodings_path = "encodings.pickle"
 # Carga los encodings con sus correspondientes nombres
 print("Cargando encodings de caras conocidas...")
 data = pickle.loads(open(encodings_path, "rb").read())
+
 # Obtiene el numero de encodings que tiene cada cara conocida
 name_counter = Counter(data['names'])
 
+# Abrimos un stream con la camara IP, obtenemos una captura y la guardamos en disco
 cap = cv2.VideoCapture()
 cap.open("rtsp://admin:AmgCam18*@192.168.1.51:554/Streaming/Channels/1")
 print("Tomando captura de la camara")
@@ -68,12 +71,14 @@ for encoding in encodings:
     # Actualiza la lista de nombres
     names.append(name)
 
+# Dibuja alrededor de cada cada detectada un cuadrado junto con el nombre de la persona reconocida
 index = 0
 for face in encodings:
     cv2.rectangle(image, ((boxes[index])[3], (boxes[index])[0]), ((boxes[index])[1], (boxes[index])[2]), (0, 255, 0), 5)
     cv2.putText(image, names[index], ((boxes[index])[3], (boxes[index])[0]), cv2.FONT_HERSHEY_SIMPLEX, 1.75, (0, 255, 0), 6)
     index += 1
 
+# Guarda en disco una copia de la imagen original con la informacion superpuesta
 image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 cv2.imwrite("imagen_procesada.jpeg", image_rgb)
 
